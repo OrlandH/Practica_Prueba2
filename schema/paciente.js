@@ -50,5 +50,4 @@ UserSchema.methods.createRefreshToken = async function (next) {
     next(new Error("Error creating token"));
   }
 };
-
 module.exports = Mongoose.model("Pacien", UserSchema);
