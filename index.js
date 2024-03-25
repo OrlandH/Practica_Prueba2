@@ -29,6 +29,7 @@ app.use("/api/pacientes/crear", authenticateToken, require("./routes/crear"));
 app.use("/api/citas/crear", authenticateToken, require("./routes/citascrear"));
 app.use("/api/especialidad/crear", authenticateToken, require("./routes/crearespecialidad"));
 app.use("/api/user", authenticateToken, require("./routes/user"));
+app.use("/api/delete/",require("./routes/deletePaciente"))
 
 app.listen(port, () => {
   console.log(`Server is up on port ${port}`);
