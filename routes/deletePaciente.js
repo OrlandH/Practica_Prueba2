@@ -4,11 +4,10 @@ const { jsonResponse } = require("../lib/jsonResponse");
 const getUserInfo = require("../lib/getUserInfo");
 const router = express.Router();
 
-// Endpoint para eliminar un paciente por su ID
-router.delete("/:id", async function (req, res, next) {
+router.delete("/:cedula", async (req, res) => {
   try {
-    const userId = req.params.id; 
-    const user = await User.findById(userId);
+    const { cedula } = req.params;
+    const user = await User.findOne({ cedula });
     if (!user) {
       return res.status(404).json(
         jsonResponse(404, {
@@ -16,14 +15,15 @@ router.delete("/:id", async function (req, res, next) {
         })
       );
     }
-    await User.findByIdAndDelete(userId);
+
+    await User.findOneAndDelete({ cedula });
     return res.json(
       jsonResponse(200, {
         message: "Paciente eliminado exitosamente",
       })
     );
-  } catch (err) {
-    console.error("Error al eliminar paciente:", err);
+  } catch (error) {
+    console.error("Error al eliminar paciente:", error);
     return res.status(500).json(
       jsonResponse(500, {
         error: "Error al eliminar paciente",
