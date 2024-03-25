@@ -1,5 +1,5 @@
 const express = require("express");
-const Pacien = require("../schema/paciente");
+const Espe = require("../schema/especialidad");
 const { jsonResponse } = require("../lib/jsonResponse");
 const router = express.Router();
 
@@ -15,30 +15,30 @@ router.post("/", async function (req, res, next) {
   }
 
   try {
-    const user = new Pacien();
-    const userExists = await user.usernameExists(cedula);
+    const user = new Espe();
+    const userExists = await user.usernameExists(codigo);
 
     if (userExists) {
       return res.status(409).json(
         jsonResponse(409, {
-          error: "Esa cedula ya esta registrada",
+          error: "Este codigo de especialidad ya esta registrada",
         })
       );
     } else {
-      const user = new Pacien({ idUser: req.user.id, username, apellido, cedula, fechaNac, genero, ciudad, direccion, telefono, email });
+      const user = new Espe({codigo, nombre, descripcion});
 
       user.save();
 
       res.json(
         jsonResponse(200, {
-          message: "Paciente creado exitosamente",
+          message: "Especialidad creado exitosamente",
         })
       );
     }
   } catch (err) {
     return res.status(500).json(
       jsonResponse(500, {
-        error: "Error creando Paciente",
+        error: "Error creando Especialidad",
       })
     );
   }
