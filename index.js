@@ -24,7 +24,7 @@ app.use("/api/login", require("./routes/login"));
 app.use("/api/signout", require("./routes/logout"));
 app.use("/api/refresh-token", require("./routes/refreshToken"));
 app.use("/api/posts", authenticateToken, require("./routes/posts"));
-app.use("/api/readTecnicos", require("./routes/readTecnicos"));
+app.use("/api/readPacientes", require("./routes/readPacientes"));
 app.use("/api/pacientes/crear", authenticateToken, require("./routes/crear"));
 app.use("/api/especialidad/crear", authenticateToken, require("./routes/crearespecialidad"));
 app.use("/api/user", authenticateToken, require("./routes/user"));

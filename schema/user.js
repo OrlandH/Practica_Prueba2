@@ -6,9 +6,11 @@ const Token = require("../schema/token");
 
 const UserSchema = new Mongoose.Schema({
   id: { type: Object },
+  name: {type: String,require:true},
+  lastname: {type: String,require:true},
   username: { type: String, required: true, unique: true },
+  email: {type: String, require: true},
   password: { type: String, required: true },
-  name: { type: String, required: true },
 });
 
 UserSchema.pre("save", function (next) {

@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const Pacien = require("../schema/paciente");
+const paciente = require('../schema/paciente')
 
 router.get("/", async (req, res) => {
     try {
-      const items = await Pacien.find({ idUser: req.user.id });
+      const items = await paciente.find({ idUser: req.user.id });
       return res.json(items);
     } catch (error) {
       console.log(error);

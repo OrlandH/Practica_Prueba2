@@ -5,7 +5,7 @@ const getUserInfo = require("../lib/getUserInfo");
 const router = express.Router();
 
 router.post("/", async function (req, res, next) {
-  const { username, password } = req.body;
+  const { username, password, } = req.body;
 
   if (!!!username || !!!password){
     return res.status(400).json(

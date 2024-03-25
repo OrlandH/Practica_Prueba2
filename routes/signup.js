@@ -4,12 +4,12 @@ const { jsonResponse } = require("../lib/jsonResponse");
 const router = express.Router();
 
 router.post("/", async function (req, res, next) {
-  const { username, password, name } = req.body;
+  const { name, lastname, username, email,password} = req.body;
 
-  if (!username || !password || !name) {
+  if (!username || !password || !name || !lastname || !email) {
     return res.status(409).json(
       jsonResponse(409, {
-        error: "Nombre de usuario y Contraseña requeridos",
+        error: "Todos los campos son requeridos",
       })
     );
   }
@@ -25,8 +25,7 @@ router.post("/", async function (req, res, next) {
         })
       );
     } else {
-      const user = new User({ username, password, name });
-
+      const user = new User({ username, password, name,lastname,email });
       user.save();
 
       res.json(
