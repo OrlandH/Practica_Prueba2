@@ -1,9 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const listarPacientes = require('../controller/pacienteController')
+const paciente = require("../schema/paciente");
 
-router.get("/listarPacientes",listarPacientes)
-
-
+router.get("/", async (req,res)=>{
+  const pacientes = await paciente.find({ idUser }).where(ciudad, "Quito");
+  res.status(200).json(pacientes);
+})
 
 module.exports = router;
